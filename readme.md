@@ -14,20 +14,20 @@
 
 ## 关键技术
 
-![](E:\本科\01课程项目\手边林业\文档\images\关键技术.jpg)
+![](https://raw.githubusercontent.com/Snake8859/ForestAtHand/master/%E6%96%87%E6%A1%A3/images/关键技术.jpg)
 
 ## 效果
 
 ### web端
 
-![](E:\本科\01课程项目\手边林业\文档\images\web端1.png)
+![](https://raw.githubusercontent.com/Snake8859/ForestAtHand/master/%E6%96%87%E6%A1%A3/images/web端1.png)
 
-![web端2](E:\本科\01课程项目\手边林业\文档\images\web端2.png)
+![web端2](https://raw.githubusercontent.com/Snake8859/ForestAtHand/master/%E6%96%87%E6%A1%A3/images/web端2.png)
 
 ### 小程序端
 
-![](E:\本科\01课程项目\手边林业\文档\images\移动端1.png)
+![](https://raw.githubusercontent.com/Snake8859/ForestAtHand/master/%E6%96%87%E6%A1%A3/images/移动端1.png)
 
-![移动端2](E:\本科\01课程项目\手边林业\文档\images\移动端2.jpg)
+<img src="https://raw.githubusercontent.com/Snake8859/ForestAtHand/master/%E6%96%87%E6%A1%A3/images/移动端2.jpg" alt="移动端2" style="zoom: 80%;" />
 
-![移动端3](E:\本科\01课程项目\手边林业\文档\images\移动端3.jpg)
+<img src="https://raw.githubusercontent.com/Snake8859/ForestAtHand/master/%E6%96%87%E6%A1%A3/images/移动端3.jpg" alt="移动端3" style="zoom: 80%;" />

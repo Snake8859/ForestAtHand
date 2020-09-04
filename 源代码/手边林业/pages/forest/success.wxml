@@ -1,0 +1,25 @@
+<view class="page">
+    <view class="weui-msg">
+        <view class="weui-msg__icon-area">
+            <icon type="success" size="93"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">提交成功</view>
+            <view class="weui-msg__desc">感谢您所贡献的数据，我们将秉承"软件服务用户，数据源于贡献"的原则继续前进</view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn" type="primary" bindtap='queryMyData'>查看我已贡献的数据</button>
+                <button class="weui-btn" type="default" bindtap='logout'>退出</button>
+            </view>
+        </view>
+        <view class="weui-msg__extra-area">
+            <view class="weui-footer">
+                <view class="weui-footer__links">
+                    <navigator  class="weui-footer__link">林业信息工程课设</navigator>
+                </view>
+                <view class="weui-footer__text">Copyright © 2008-2019 snake8859.top</view>
+            </view>
+        </view>
+    </view>
+</view>

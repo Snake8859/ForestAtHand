@@ -1,0 +1,96 @@
+<!--pages/forest/forest.wxml-->
+<form bindsubmit="formSubmit">
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="page__title">林业资源采集表</view>
+    </view>
+  <view class="weui-cells__title">采集项</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">资源名称</view>
+        </view>
+     <view class="weui-cell__bd">
+      <input class="weui-input" name="fname" placeholder="请输入林木花草名称(必填)"/>
+     </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">资源种类</view>
+        </view>
+     <view class="weui-cell__bd">
+      <input class="weui-input" name="ftype" placeholder="请输入林木花草科类"/>
+     </view>
+    </view>
+  </view>
+  
+  <view class="weui-cells__title">资源形态特征</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" name="fform" placeholder="描述植被的外观（比如树高，叶子的形状，是否有锯齿等）" />
+        </view>
+      </view>
+  </view>
+
+ <view class="weui-cells__title">资源产地环境</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" name="forigin" placeholder="描述植被的产地环境" />
+        </view>
+      </view>
+  </view>
+
+  <view class="weui-cells__title">资源生长习性</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" name="fgrowtHabit" placeholder="描述植被的生长习性"/>
+        </view>
+      </view>
+  </view>
+</view>
+
+<view class="page__bd">
+        <view class="weui-cells">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">图片上传(至少一张）</view>
+                    <view class="weui-uploader__info">{{files.length}}/2</view>
+                  </view>
+                  <view class="weui-uploader__bd">
+                      <view class="weui-uploader__files" id="uploaderFiles">
+                        <block wx:for="{{files}}" wx:key="*this">
+                            <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                            </view>
+                        </block>
+                      </view>
+                      <view wx:if="{{files.length<=1}}">
+                        <view class="weui-uploader__input-box">
+                          <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                        </view>
+                      </view>
+                  </view>
+                </view>
+               </view>
+              </view>
+          </view>
+  <view class='map_container'>
+    <view class="weui-cells__title">当前的位置</view>
+    <view class="map_view">
+      <map class='map' id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="17" markers="{{markers}}"></map> 
+    </view>
+  </view>
+  <view class="button-sp-area">
+    <button class="weui-btn" form-type='submit' type="primary">提交</button>
+  </view>
+</view>
+</form>
+<view class="weui-form-preview__ft">
+                <navigator url="preview" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">查看我已贡献的数据</navigator>
+</view>

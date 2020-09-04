@@ -1,0 +1,6 @@
+.gitigonre
+.project
+.classpath
+*.properties
+.settings/
+build/

@@ -1,0 +1,38 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">我已贡献的数据</view>
+    </view>
+    <block wx:for="{{forestList}}">
+      <view class="page__bd">
+          <view class="weui-form-preview">
+              <view class="weui-form-preview__hd">
+                  <view class="weui-form-preview__item">
+                      <view class="weui-form-preview__label">资源名称</view>
+                      <view class="weui-form-preview__value_in-hd">{{item.fName}}</view>
+                  </view>
+              </view>
+              <view class="weui-form-preview__bd">
+                  <view class="weui-form-preview__item">
+                      <view class="weui-form-preview__label">属于种类</view>
+                      <view class="weui-form-preview__value">{{item.fType}}</view>
+                  </view>
+                  <view class="weui-form-preview__item">
+                      <view class="weui-form-preview__label">资源形态特征</view>
+                      <view class="weui-form-preview__value">{{item.fForm}}</view>
+                  </view>
+                  <view class="weui-form-preview__item">
+                      <view class="weui-form-preview__label">资源产地环境</view>
+                      <view class="weui-form-preview__value">{{item.fOrigin}}</view>
+                  </view>
+                  <view class="weui-form-preview__item">
+                      <view class="weui-form-preview__label">资源生长习性</view>
+                      <view class="weui-form-preview__value">{{item.fGrowthHabit}}</view>
+                  </view>
+              </view>
+              <view class="weui-form-preview__ft">
+                  <navigator  class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">感谢您的分享</navigator>
+              </view>
+          </view>
+      </view>
+    </block>
+</view>

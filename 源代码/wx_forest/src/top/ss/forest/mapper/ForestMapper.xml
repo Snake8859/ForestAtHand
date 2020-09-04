@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.ss.forest.mapper.ForestMapper">
+	
+	<!-- 保存林业资源 -->
+	<insert id="saveForestInfo" parameterType="ForestInfo" >
+	 <selectKey keyProperty="fid" resultType="String" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+      </selectKey>
+		insert into t_forestInfo
+		values
+		(#{fid},#{fName},#{fType},#{fForm},#{fOrigin},#{fGrowthHabit},
+		#{latitude},#{longitude},#{creater},#{createTime},
+		#{mender},#{modifyTime},#{uid}
+		)
+	</insert>
+	
+	<!-- 更新林业资源 -->
+	<update id="updateForestInfo" parameterType="ForestInfo">
+		update t_forestInfo
+		<set>
+			<if test="fName!=null and fName !=''">
+				fName = #{fName},
+			</if>
+			<if test="fType!=null and fType !=''">
+			   fType = #{fType},
+			 </if>
+			 <if test="fForm!=null and fForm !=''">
+			   fForm = #{fForm},
+			 </if>
+			 <if test="fOrigin!=null and fOrigin !=''">
+			   fOrigin = #{fOrigin},
+			 </if>
+			  <if test="fGrowthHabit!=null and fGrowthHabit!=''">
+			   fGrowthHabit = #{fGrowthHabit},
+			  </if>
+			   <if test="mender!=null and mender!=''">
+			   mender = #{mender},
+			  </if>
+			   <if test="modifyTime!=null and modifyTime!=''">
+			   modifyTime = #{modifyTime},
+			  </if>
+		</set>
+		<where>
+			fid = #{fid}
+		</where>
+	
+	</update>
+	
+	<!-- 根据fid查询林业资源 -->
+	<select id="findForestInfoByFid" parameterType="String" resultType="ForestInfo">
+		select * from t_forestInfo
+		<where>
+			fid = #{fid}
+		</where>
+	</select>
+	
+	<!-- 根据uid查询林业资源 -->
+	<select id="queryForestInfoByUid" parameterType="String" resultType="ForestInfo" >
+		select * from t_forestInfo
+		<where>
+			uid = #{uid}
+		</where>
+	</select>
+	
+	<!-- 保存资源图片 -->
+	<insert id="saveForestPic" parameterType="ForestPic">
+	
+	  <selectKey keyProperty="pid" resultType="String" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+      </selectKey>
+		insert into t_forestPic
+		values
+		(#{pid},#{pictureName},#{fid_pic})
+	</insert>
+	
+	
+	
+	
+	<resultMap type="ForestPic" id="forestPicResult">
+			<!-- 配置主键，是关联ForestPic的唯一标识 -->
+			<id property="pid" column="pid"/>
+			<result property="pictureName" column="pictureName"/>
+			<result property="fid_pic" column="fid"/>
+	</resultMap>
+	
+	<!-- 根据fid查询资源图片 -->
+	<select id="queryForestPicByfid" parameterType="String" resultMap="forestPicResult">
+		select 
+			pid,
+			pictureName,
+			fid
+		from t_forestPic 
+		<where>
+			fid = #{fid}
+		</where>
+	</select>
+	
+	
+	<!-- 一对多映射 -->
+	<resultMap type="ForestInfo" id="forestPicAndInfo">
+		<id property="fid" column="fid"/>
+		<result property="fName" column="fName"/>
+		<result property="fType" column="fType"/>
+		<result property="fForm" column="fForm"/>
+		<result property="fOrigin" column="fOrigin"/>
+		<result property="fGrowthHabit" column="fGrowthHabit"/>
+		<result property="creater" column="creater"/>
+		<!-- 
+			配置一对多
+			property 集合类型
+			ofType 集合泛型
+		 -->
+		<collection property="forestPicList" column="fid"  ofType="ForestPic" select="queryForestPicByfid">
+		</collection>
+	</resultMap>
+	
+	<!-- 根据QueryVo查询林业资源  一对多查询-->
+	<select id="queryForestInfoByQueryVo" parameterType="QueryVo" resultMap="forestPicAndInfo">
+		select 
+		f.fid,f.fName,
+		f.fType,f.fForm,
+		f.fOrigin,f.fGrowthHabit,
+		f.creater
+		from t_forestInfo f
+		<if test="start!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<!-- 统计林业资源个数 -->
+	<select id="countForestInfo" resultType="int">
+		select count(*) from t_forestInfo
+	</select>
+	
+	
+	<!-- 一对多映射 -->
+	<resultMap type="ForestInfo" id="forestPicAndMapInfo">
+		<id property="fid" column="fid"/>
+		<result property="fName" column="fName"/>
+		<result property="fType" column="fType"/>
+		<result property="creater" column="creater"/>
+		<!-- 
+			配置一对多
+			property 集合类型
+			ofType 集合泛型
+		 -->
+		<collection property="forestPicList" column="fid"  ofType="ForestPic" select="queryForestPicByfid">
+		</collection>
+	</resultMap>
+	
+	<!-- 查询地图信息 -->
+	<select id="queryMapInfo" resultMap="forestPicAndMapInfo">
+		select 
+		f.fid,
+		f.fName,
+		f.fType,
+		f.latitude,
+		f.longitude
+		from t_forestInfo f
+	</select>
+ 
+</mapper>
